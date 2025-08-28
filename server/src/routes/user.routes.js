@@ -50,5 +50,6 @@ router.route("/edit-account").patch(
 router.route("/c/:username").get(verifyJWT, getUserChannelProfile);
 router.route("/history").get(verifyJWT, getWatchHistory);
 router.route("/c/:username/videos").get(verifyJWT, getUserChannelVideos);
+// Dashboard endpoint - returns user's videos and statistics
 router.route("/c/:username/dashboard").get(verifyJWT, getDashboardData);
 export default router;

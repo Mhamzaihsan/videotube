@@ -606,6 +606,8 @@ const getDashboardData = asyncHandler(async (req, res) => {
     },
   ]);
 
+  // Query all videos owned by the authenticated user
+  // This is the source of videos displayed on the dashboard
   const totalVideos = await Video.find({ owner: user._id }).select(
     "-password -refreshToken"
   );
@@ -648,7 +650,7 @@ const getDashboardData = asyncHandler(async (req, res) => {
       {
         totalViews: totalViews[0]?.totalViews || 0,
         totalSubscribers: subscribers[0]?.subscribersCount || 0,
-        totalVideos: totalVideos || 0,
+        totalVideos: totalVideos || 0, // Array of user's videos for dashboard table
         totalLikes: totalLikes[0]?.totalLikes || 0,
       },
       "Dashboard data fetched successfully"

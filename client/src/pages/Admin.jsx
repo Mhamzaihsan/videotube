@@ -15,6 +15,9 @@ function Admin() {
   const username = userData?.username;
   const { register, handleSubmit, reset } = useForm();
 
+  // Fetch dashboard data including user's videos from the API
+  // This calls the getDashboardData controller which queries the Video model
+  // for all videos where owner field matches the authenticated user's ID
   const { data, isLoading, isError } = useQuery({
     queryKey: ["dashboardData", username],
     queryFn: async () => {
@@ -221,6 +224,11 @@ function Admin() {
             </tr>
           </thead>
           <tbody className="block md:table-row-group">
+            {/* 
+              Display all videos belonging to the authenticated user
+              data.totalVideos contains the array of Video documents from MongoDB
+              Each video was queried using: Video.find({ owner: user._id })
+            */}
             {data?.totalVideos?.map((video) => (
               <tr
                 key={video._id}
