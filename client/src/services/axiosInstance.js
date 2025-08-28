@@ -2,8 +2,8 @@ import axios from "axios";
 import config from "../config/config";
 
 const axiosInstance = axios.create({
-  baseURL: config.baseUrl,
-  withCredentials: true, // Include cookies in requests
+  baseURL: "http://localhost:5000/api/v1", // <-- Hardcoded here
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.response.use(
